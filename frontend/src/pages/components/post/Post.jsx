@@ -3,12 +3,12 @@ import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
 // import { Users } from "../../../dummyData";
 import axios from "axios";
-
+import {format} from "timeago.js";
 
 export default function Post({post}) {
   const PUBLIC_FOLDER = import.meta.env.VITE_APP_PUBLIC_FOLDER;
 
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
 
@@ -32,7 +32,7 @@ export default function Post({post}) {
           <div className="postTopLeft">
             <img src={user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="postProfileImg" />
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -40,7 +40,7 @@ export default function Post({post}) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img src={PUBLIC_FOLDER + post.photo} alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

@@ -11,12 +11,12 @@ export default function TimeLine() {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await axios.get("/api/posts/timeline/675cb8209fd61067b8010bfa");
-      console.log(response.data);
+      // console.log(response.data);
       setPosts(response.data);
     };
     fetchPosts();
   }, []);
-  console.log(posts)
+  
   return (
     <div className='timeline'>
       <div className="timelineWrapper">
