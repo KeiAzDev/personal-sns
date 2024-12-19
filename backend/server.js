@@ -6,6 +6,7 @@ const postRoute = require("./routes/posts");
 const PORT = 3000;
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require('cors');
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("DBと接続中");
@@ -13,6 +14,11 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
   .catch((err) => {
     console.log("err");
   });
+
+  app.use(cors({
+    origin: 'http://localhost:5173', // フロントエンドのURL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  }));
 
 app.use(express.json());
 app.use("/api/users", userRoute);
