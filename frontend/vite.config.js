@@ -6,12 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/posts': {
-        target: 'http://localhost:3000/api', // バックエンドサーバーのURL
-        changeOrigin: true, // 必要に応じてリクエストのオリジンを変更
-        secure: false, // HTTPSが必要ない場合
-      },
+      '/api': 'http://localhost:3000', // バックエンドのAPIサーバーURL
     },
   },
 });
-
