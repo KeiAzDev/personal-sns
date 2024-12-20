@@ -8,6 +8,7 @@ const PORT = 3000;
 const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require('cors');
+const path = require("path");
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("DBと接続中");
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     origin: "http://localhost:5173", // フロントエンドのURL
   }));
 
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);

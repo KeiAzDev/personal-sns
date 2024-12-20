@@ -15,7 +15,10 @@ export default function TimeLine({username}) {
     const fetchPosts = async () => {
       const response = username ? await axios.get(`/api/posts/profile/${username}`) : await axios.get(`/api/posts/timeline/${user._id}`);
       // console.log(response.data);
-      setPosts(response.data);
+      setPosts(response.data.sort((post1, post2) => {
+        return new Date(post2.createdAt) - new Date(post1.createdAt)
+      })
+    );
     };
     fetchPosts();
   }, [username, user._id]);
