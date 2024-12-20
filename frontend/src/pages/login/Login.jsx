@@ -1,15 +1,26 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./Login.css";
+import { loginCall } from "../../actionCalls";
+import { AuthContext } from "../../state/AuthContext";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
+  const {user, isFetching, error, dispatch} = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email.current.value);
-    console.log(password.current.value);
-  }
+    // console.log(email.current.value);
+    // console.log(password.current.value);
+    loginCall({
+      email: email.current.value,
+      password: password.current.value,
+    },
+  dispatch
+  );
+  };
+
+  console.log(user);
 
   return (
     <div className="login">
