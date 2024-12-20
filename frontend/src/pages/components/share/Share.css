@@ -71,3 +71,7 @@
   cursor: pointer;
   margin-right: 20px;
 }
+
+.imgInput {
+  display: none;
+}
